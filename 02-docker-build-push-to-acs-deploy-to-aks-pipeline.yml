@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: '6b3c83a5-8a1e-4617-9fbf-f8df21ec3553'
   imageRepository: 'app1appnginx'
   containerRegistry: 'demoaksacr2022.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile.txt'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'demoaksacr20222463f4df-auth'
 
