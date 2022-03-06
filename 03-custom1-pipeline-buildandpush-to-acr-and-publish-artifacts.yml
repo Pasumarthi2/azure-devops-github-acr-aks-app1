@@ -50,7 +50,7 @@ stages:
     
     - task: CopyFiles@2
       inputs:
-        SourceFolder: '$(agent.builddirectory)/manifests'
+        SourceFolder: '$(agent.builddirectory)'
         Contents: '**'
         TargetFolder: '$(build.artifactstagingdirectory)'
         OverWrite: true
