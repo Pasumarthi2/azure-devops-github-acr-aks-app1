@@ -8,6 +8,10 @@ trigger:
 
 variables :
   tag : '$(Build.BuildId)'
+  dockerRegistryServiceConnection: '6b3c83a5-8a1e-4617-9fbf-f8df21ec3553'
+  imageRepository: 'custom2aksapp1appnginx'
+  containerRegistry: 'SC-azure-container-registry'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile.txt'
 
 stages:
   - stage: Build
@@ -24,10 +28,12 @@ stages:
       # Task-1: Build Docker Image and push to Azure Container Registry ACR
       - task: Docker@2
         inputs:
-          containerRegistry: 'SC-azure-container-registry'
-          repository: 'custom2aksnginxapp1'
+          containerRegistry: '$(dockerRegistryServiceConnection)'
+          repository: $(imageRepository)
+          dockerfile: $(dockerfilePath)
           command: 'buildAndPush'
-          Dockerfile: '**/Dockerfile'
+          tags: |
+           $(tag)
 
       # Task-2: Copy kube-manifest files to Build Artifact Directory
       - task: CopyFiles@2
