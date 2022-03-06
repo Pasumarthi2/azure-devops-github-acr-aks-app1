@@ -51,7 +51,7 @@ stages:
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(agent.builddirectory)'
-        Contents: '**'
+        Contents: '**/*.yaml'
         TargetFolder: '$(build.artifactstagingdirectory)'
         OverWrite: true
         
